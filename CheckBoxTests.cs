@@ -8,13 +8,23 @@ using System.Collections.Generic;
 
 namespace SeleniumCSharp
 {
+    [TestFixture]
     class CheckBoxTests
     {
         private ChromeDriver driver;
-        public CheckBoxTests(ChromeDriver driver)
+        private ChromeDriverService service = ChromeDriverService.CreateDefaultService(@"/home/richard-u18/git/SeleniumCSharp/webdrivers", "chromedriver");
+
+        [SetUp]
+        public void SetUp()
         {
-            this.driver = driver;
-        }
+            driver = new ChromeDriver(service);
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
+            driver.Url = "localhost:8080";
+            driver.FindElementByLinkText("here").Click();
+        }    
+
+        public CheckBoxTests()
+        {}
 
         [Test]
         public void OneTwo()
@@ -37,7 +47,7 @@ namespace SeleniumCSharp
             driver.FindElementByXPath("//input[@type='submit']").Click();
             string actualText = driver.FindElementById("checkBoxResult").Text;
             Assert.True(actualText.Contains("Subscribe To PewDiePie"), "**********************************Oh noes! Checkboxes not giving correct value");
-            Console.WriteLine("******************* Yay it passed!");
+            Console.WriteLine("******************* Yay it passed!"); //This should not appear
         }
 
         [Test]
@@ -51,6 +61,12 @@ namespace SeleniumCSharp
             Assert.True(actualText.Contains("two"));
             Assert.True(actualText.Contains("three"));
             Console.WriteLine("******************* Yay TwoThree passed!");
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            driver.Quit();
         }
 
     }

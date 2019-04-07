@@ -17,29 +17,22 @@ using System.Collections.Generic;
 
 namespace SeleniumCSharp
 {
+    
     class SeleniumAttempt
     {
         // private static FirefoxDriver driver;
-        private static ChromeDriver driver;
 
         static void Main(string[] args)
         {
             // FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"/home/richard-u18/git/SeleniumCSharp/webdrivers", "geckodriver");
             // service.Port = 64444;
             // driver = new FirefoxDriver(service);
-            
-            ChromeDriverService service = ChromeDriverService.CreateDefaultService(@"/home/richard-u18/git/SeleniumCSharp/webdrivers", "chromedriver");
-            driver = new ChromeDriver(service);
-            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
-            driver.Url = "localhost:8080";
-            driver.FindElementByLinkText("here").Click();
 
-            CheckBoxTests cbt = new CheckBoxTests(driver);
-            cbt.OneTwo(); driver.FindElementByLinkText("Terrific").Click();
-            cbt.IntentionalFail(); driver.FindElementByLinkText("Terrific").Click();
-            cbt.TwoThree(); driver.FindElementByLinkText("Terrific").Click();
+            CheckBoxTests cbt = new CheckBoxTests();
+            cbt.SetUp(); cbt.OneTwo(); cbt.TearDown();
+            cbt.SetUp(); cbt.IntentionalFail(); cbt.TearDown();
+            cbt.SetUp(); cbt.TwoThree(); cbt.TearDown();
             
-            driver.Close();
         }
     }
 }        
