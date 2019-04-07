@@ -26,6 +26,7 @@ namespace SeleniumCSharp
             Assert.True(actualText.Contains("one"));
             Assert.True(actualText.Contains("two"));
             Assert.False(actualText.Contains("three"));
+            Console.WriteLine("******************* Yay OneTwo passed!");
         }
 
         [Test]
@@ -37,6 +38,19 @@ namespace SeleniumCSharp
             string actualText = driver.FindElementById("checkBoxResult").Text;
             Assert.True(actualText.Contains("Subscribe To PewDiePie"), "**********************************Oh noes! Checkboxes not giving correct value");
             Console.WriteLine("******************* Yay it passed!");
+        }
+
+        [Test]
+        public void TwoThree()
+        {
+            driver.FindElementById("checkBoxSelection2").Click();
+            driver.FindElementById("checkBoxSelection3").Click();
+            driver.FindElementByXPath("//input[@type='submit']").Click();
+            string actualText = driver.FindElementById("checkBoxResult").Text;
+            Assert.False(actualText.Contains("one"));
+            Assert.True(actualText.Contains("two"));
+            Assert.True(actualText.Contains("three"));
+            Console.WriteLine("******************* Yay TwoThree passed!");
         }
 
     }

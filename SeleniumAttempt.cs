@@ -37,7 +37,8 @@ namespace SeleniumCSharp
             CheckBoxTests cbt = new CheckBoxTests(driver);
             cbt.OneTwo(); driver.FindElementByLinkText("Terrific").Click();
             cbt.IntentionalFail(); driver.FindElementByLinkText("Terrific").Click();
-
+            cbt.TwoThree(); driver.FindElementByLinkText("Terrific").Click();
+            
             driver.Close();
         }
     }
