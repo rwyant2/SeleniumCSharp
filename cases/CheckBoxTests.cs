@@ -36,18 +36,16 @@ namespace SeleniumCSharp
             Assert.True(actualText.Contains("one"));
             Assert.True(actualText.Contains("two"));
             Assert.False(actualText.Contains("three"));
-            Console.WriteLine("******************* Yay OneTwo passed!");
         }
 
         [Test]
-        public void IntentionalFail()
+        public void IntentionalFailCheckBox()
         {
             driver.FindElementById("checkBoxSelection1").Click();
             driver.FindElementById("checkBoxSelection2").Click();
             driver.FindElementByXPath("//input[@type='submit']").Click();
             string actualText = driver.FindElementById("checkBoxResult").Text;
-            Assert.True(actualText.Contains("Subscribe To PewDiePie"), "**********************************Oh noes! Checkboxes not giving correct value");
-            Console.WriteLine("******************* Yay it passed!"); //This should not appear
+            Assert.True(actualText.Contains("Subscribe To PewDiePie"), "Oh noes! Checkboxes not giving correct value");
         }
 
         [Test]
@@ -60,7 +58,30 @@ namespace SeleniumCSharp
             Assert.False(actualText.Contains("one"));
             Assert.True(actualText.Contains("two"));
             Assert.True(actualText.Contains("three"));
-            Console.WriteLine("******************* Yay TwoThree passed!");
+        }
+
+
+        [Test]
+        public void AllThreeCheckBoxes()
+        {
+            driver.FindElementById("checkBoxSelection1").Click();
+            driver.FindElementById("checkBoxSelection2").Click();
+            driver.FindElementById("checkBoxSelection3").Click();
+            driver.FindElementByXPath("//input[@type='submit']").Click();
+            string actualText = driver.FindElementById("checkBoxResult").Text;
+            Assert.True(actualText.Contains("one"));
+            Assert.True(actualText.Contains("two"));
+            Assert.True(actualText.Contains("three"));
+        }
+
+        [Test]
+        public void NoCheckBoxes()
+        {
+            driver.FindElementByXPath("//input[@type='submit']").Click();
+            string actualText = driver.FindElementById("checkBoxResult").Text;
+            Assert.False(actualText.Contains("one"));
+            Assert.False(actualText.Contains("two"));
+            Assert.False(actualText.Contains("three"));
         }
 
         [TearDown]
