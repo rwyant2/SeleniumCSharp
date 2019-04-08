@@ -6,14 +6,10 @@ using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Chrome;
 using System.Collections.Generic;
 
-// Ideally, I'd be using NUnit to run these. My evnironment is having issues
-// running NUnit test from Visual Studio Code for Ubuntu. Since this is a demo
-// for a job interview, I'm putting that on the back burner.
-
-// For now, the goal is to test my SpringBootProject website a'la the
-// SeleniumJavaGradle project and to demonstrate I can learn enough C#
-// In a weekend to write tests. In reality, I can always figure out the 
-// testing infrastructure later.
+// Initially I was having issues running from Visual Studio Code.
+// I have this fixed, but I want to keep this class handy around.
+// A goal I have for the portfolio is to have a C# example a'la SeleniumJavaGradle.
+// For that, I'll need to be able to run tests programatically, which is what this does.
 
 namespace SeleniumCSharp
 {
@@ -22,7 +18,7 @@ namespace SeleniumCSharp
     {
         // private static FirefoxDriver driver;
 
-        static void other(string[] args)
+        static void other(string[] args) // Renaming from Main so I don't get duplicate entry point error
         {
             // FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"/home/richard-u18/git/SeleniumCSharp/webdrivers", "geckodriver");
             // service.Port = 64444;
@@ -30,7 +26,7 @@ namespace SeleniumCSharp
 
             CheckBoxTests cbt = new CheckBoxTests();
             cbt.SetUp(); cbt.OneTwo(); cbt.TearDown();
-            cbt.SetUp(); cbt.IntentionalFail(); cbt.TearDown();
+            cbt.SetUp(); cbt.IntentionalFailCheckBox(); cbt.TearDown();
             cbt.SetUp(); cbt.TwoThree(); cbt.TearDown();
             
         }
