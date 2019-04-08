@@ -22,7 +22,7 @@ namespace SeleniumCSharp
     {
         // private static FirefoxDriver driver;
 
-        static void Main(string[] args)
+        static void other(string[] args)
         {
             // FirefoxDriverService service = FirefoxDriverService.CreateDefaultService(@"/home/richard-u18/git/SeleniumCSharp/webdrivers", "geckodriver");
             // service.Port = 64444;
